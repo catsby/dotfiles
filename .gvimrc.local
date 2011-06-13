@@ -1,0 +1,47 @@
+let g:NERDTreeMapOpenSplit = 'i'
+set nu
+set et
+set ts=2
+set sw=2
+set ruler
+let g:solarized_termcolors=16
+" colorscheme wombat256
+
+set background=light
+colorscheme solarized
+"
+"set columns=145
+"set lines=48
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+set gfn=Inconsolata:h14
+set backupdir=~/.vimswap
+set directory=~/.vimswap
+set nobackup
+set noswapfile
+set winheight=11
+command! Trail :%s/\s\+$//g
+nnoremap <D-r> :NERDTreeToggle<CR>
+nnoremap <C-L> :nohls<CR><C-L>
+set vb
+set t_vb=
+nnoremap <esc> :noh<return><esc>
+
+
+if has('statusline')
+  set statusline=%<%f\ 
+  set statusline+=%w%h%m%r 
+  set statusline+=%{fugitive#statusline()}
+  set statusline+=\ [%{&ff}/%Y]  
+  set statusline+=\ [%{getcwd()}]
+  set statusline+=%=%-14.(Line:\ %l\ of\ %L\ [%p%%]\ -\ Col:\ %c%V%)
+endif
+
+
+"folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+

@@ -1,0 +1,71 @@
+[core]
+	excludesfile = /Users/clint/.gitignore
+	editor       = vim
+	whitespace   = trailing-space,space-before-tab
+	autocrlf     = input
+
+[apply]
+	whitespace   = fix
+
+[color]
+  ui               = true ;doesnt work for some reason ...
+  interactive      = true
+  status           = true
+  branch           = true
+  diff             = true
+  [color "branch"]
+  current          = yellow reverse
+  local            = yellow
+  remote           = green
+  [color "diff"]
+  meta             = yellow bold
+  frag             = magenta bold
+  old              = red bold
+  new              = green bold
+  [color "status"]
+  added            = yellow
+  changed          = green
+  untracked        = cyan
+
+[alias]
+  st  = status -sb
+  ci  = commit
+  co  = checkout
+  br  = branch
+  ls  = log --pretty=oneline --abbrev-commit --decorate
+  s   = status
+  a   = add
+  b   = branch
+  d   = diff
+  dc  = diff --cached
+  v   = show
+  l   = log --pretty=oneline --abbrev-commit
+  ll  = log
+  cp  = cherry-pick
+  c   = checkout
+  cc  = commit
+  ri  = rebase -i HEAD~10
+  sh  = !git-sh
+  ro  = !git fetch origin && git reset --hard origin/master
+  sf  = !git status -sb && git fetch
+  sfa = !git status -sb && git fetch --all
+  p   = add -p
+  lg  = log --oneline --graph
+  ds  = diff --staged
+  lm  = log --no-merges
+
+[user]
+  email = clint@ctshryock.com
+  name  = Clint Shryock
+
+[push]
+	default                 = tracking
+[diff]
+	tool                    = diffmerge
+[difftool "diffmerge"]
+	cmd                     = diffmerge \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool                    = diffmerge
+[mergetool "diffmerge"]
+	cmd                     = diffmerge --merge --result=\"$MERGED\"  \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	trustexitcode           = false
