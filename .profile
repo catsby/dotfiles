@@ -1,4 +1,5 @@
-source ~/.private.profile       # misc stuff not for sharing
+source ~/.cinderella.profile
+source ~/.private.profile
 source ~/.git-completion.bash   # from git source contrib/completion
 alias gf="git-flow"
 alias dirs="ls -al | grep '^d'"     # show the dir's in the current dir
