@@ -13,7 +13,7 @@ alias apachectl='sudo apachectl'
 alias mysqlstart='mysqld_safe --user=`whoami` &'
 alias mysqlstop='mysqladmin -uroot shutdown'
 alias pgstart='pg_ctl -D /Users/clint/Developer/var/postgres -l /Users/clint/Developer/var/postgres/server.log start '
-alias pgstop='pg_ctl -D /Users/clint/Developer/var/postgres -m smart stop'
+alias pgstop='pg_ctl -D /Users/clint/Developer/var/postgres -m immediate stop'
 
 alias devstart='apachectl start; pgstart; mysqlstart'
 alias devstop='apachectl stop; mysqlstop; pgstop'
