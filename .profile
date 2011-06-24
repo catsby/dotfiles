@@ -13,9 +13,9 @@ alias apachectl='sudo apachectl'
 alias mysqlstart='mysqld_safe --user=`whoami` &'
 alias mysqlstop='mysqladmin -uroot shutdown'
 alias pgstart='pg_ctl -D /Users/clint/Developer/var/postgres -l /Users/clint/Developer/var/postgres/server.log start '
-alias pgstop='pg_ctl -D /Users/clint/Developer/var/postgres -m immediate stop'
+alias pgstop='pg_ctl -D /Users/clint/Developer/var/postgres -m smart stop'
 
-alias devstart='apachectl start; pgstart; mysqlstart'
+alias devstart='apachectl start; pgstart; memcached -d; mysqlstart'
 alias devstop='apachectl stop; mysqlstop; pgstop'
 
 # make a diff file, view in Textmate (requires Textmate cli)
@@ -35,6 +35,8 @@ alias rake='clear; rake'
 
 # gets cwd
 alias getpath='pwd | tr -d "\r\n" | pbcopy'
+# get current git branch
+alias getbranch='git branch | tr -d "* " | pbcopy'
 # gets external IP of host
 alias getip="curl -L -s --max-time 10 http://checkip.dyndns.org | egrep -o -m 1 '([[:digit:]]{1,3}\.){3}[[:digit:]]{1,3}'"
 

@@ -39,7 +39,7 @@
   b   = branch
   d   = diff
   v   = show
-  l   = log --pretty=format:"%h%x09%an%x09%d%x09%s" 
+  l   = log --pretty=format:"%h%x09%an%x09%ar%x09%d%x09%s" 
   c   = checkout
   cc  = commit
   ri  = rebase -i HEAD~10
@@ -54,7 +54,10 @@
 
 [user]
   email = clint@ctshryock.com
-  name  = Clint Shryock
+	name = Clint Shryock
+
+[github]
+  user = ctshryock
 
 [push]
 	default                 = tracking
