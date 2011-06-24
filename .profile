@@ -27,6 +27,9 @@ alias git=hub
 #alias for git pulls https://github.com/schacon/git-pulls
 alias gp='git pulls'
 
+#alias for lulz
+alias pupunit=phpunit
+
 #alias for cucumber; I like to clear display first
 alias cucumber='clear; cucumber'
 alias rspec='clear; rspec'
