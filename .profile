@@ -39,7 +39,7 @@ alias rake='clear; rake'
 # gets cwd
 alias getpath='pwd | tr -d "\r\n" | pbcopy'
 # get current git branch
-alias getbranch='git branch | grep ^* | tr -d "* " | pbcopy'
+alias getbranch='git branch | grep ^* | tr -d "* " | pbcopy &&  pbpaste'
 # gets external IP of host
 alias getip="curl -L -s --max-time 10 http://checkip.dyndns.org | egrep -o -m 1 '([[:digit:]]{1,3}\.){3}[[:digit:]]{1,3}'"
 
