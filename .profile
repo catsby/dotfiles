@@ -1,5 +1,4 @@
 source ~/.cinderella.profile
-source ~/.private.profile
 source ~/.git-completion.bash   # from git source contrib/completion
 alias gf="git-flow"
 alias dirs="ls -al | grep '^d'"     # show the dir's in the current dir
@@ -45,4 +44,4 @@ alias getip="curl -L -s --max-time 10 http://checkip.dyndns.org | egrep -o -m 1 
 
 alias gitx='open -a gitx'
 
-export PATH=$PATH:/Users/clint/Developer/include
+export PATH=$PATH:/Users/clint/Developer/include:/Users/clint/Projects/scripts
