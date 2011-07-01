@@ -14,7 +14,7 @@
   branch           = true
   diff             = true
   [color "branch"]
-  current          = yellow reverse
+  current          = blue bold 
   local            = yellow
   remote           = green
   [color "diff"]
