@@ -9,13 +9,13 @@ alias dirs="ls -al | grep '^d'"     # show the dir's in the current dir
 #  opting to start them manually when needed.
 
 alias apachectl='sudo apachectl'
-alias mysqlstart='mysqld_safe --user=`whoami` &'
-alias mysqlstop='mysqladmin -uroot shutdown'
-alias pgstart='pg_ctl -D /Users/clint/Developer/var/postgres -l /Users/clint/Developer/var/postgres/server.log start '
-alias pgstop='pg_ctl -D /Users/clint/Developer/var/postgres -m smart stop'
+alias mysqlstart='lunchy start mysql'
+alias mysqlstop='lunchy stop mysql'
+alias pgstart='lunchy start postgres'
+alias pgstop='lunchy stop postres'
 
-alias devstart='apachectl start; pgstart; memcached -d; mysqlstart'
-alias devstop='apachectl stop; mysqlstop; pgstop'
+alias devstart='apachectl start && lunchy start postgres && lunchy start memcached && lunchy start mysql'
+alias devstop='apachectl stop; lunchy stop postgres && lunchy stop mysql'
 
 # make a diff file, view in Textmate (requires Textmate cli)
 alias mdiff='git diff > d.diff && mate d.diff'
@@ -44,4 +44,4 @@ alias getip="curl -L -s --max-time 10 http://checkip.dyndns.org | egrep -o -m 1 
 
 alias gitx='open -a gitx'
 
-export PATH=$PATH:/Users/clint/Developer/include:/Users/clint/Projects/scripts
+export PATH=$PATH:/Users/clint/Developer/include:/Users/clint/Projects/scripts:/Users/clint/Developer/pear/bin
