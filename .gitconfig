@@ -15,10 +15,10 @@
   diff             = true
   [color "branch"]
   current          = blue bold 
-  local            = yellow
-  remote           = green
+  local            = green 
+  remote           = magenta
   [color "diff"]
-  meta             = yellow bold
+  meta             = blue bold
   frag             = magenta bold
   old              = red bold
   new              = green bold
