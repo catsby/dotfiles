@@ -44,4 +44,4 @@ alias getip="curl -L -s --max-time 10 http://checkip.dyndns.org | egrep -o -m 1 
 
 alias gitx='open -a gitx'
 
-export PATH=$PATH:/Users/clint/Developer/include:/Users/clint/Projects/scripts:/Users/clint/Developer/pear/bin
+export PATH=$PATH:/Users/clint/Developer/include:/Users/clint/Projects/scripts:/Users/clint/Developer/pear/bin:/Users/clint/Library/Application\ Support/Pow/Current/bin
