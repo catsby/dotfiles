@@ -2,3 +2,4 @@
 *.diff
 *.swp
 development.sqlite3
+tags
