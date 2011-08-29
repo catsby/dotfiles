@@ -2,7 +2,7 @@
 	excludesfile = /Users/clint/.gitignore
 	editor       = vim
 	whitespace   = trailing-space,space-before-tab
-	autocrlf     = input
+	autocrlf = input
 
 [apply]
 	whitespace   = fix

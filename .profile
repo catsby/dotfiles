@@ -10,7 +10,7 @@ alias dirs="ls -al | grep '^d'"     # show the dir's in the current dir
 
 alias apachectl='sudo apachectl'
 alias mysqlstart='lunchy start mysql'
-alias mysqlstop='lunchy stop mysql'
+alias mysqlstop='lunchy stop mysql && mysqld stop'
 alias pgstart='lunchy start postgres'
 alias pgstop='lunchy stop postres'
 
@@ -44,4 +44,4 @@ alias getip="curl -L -s --max-time 10 http://checkip.dyndns.org | egrep -o -m 1 
 
 alias gitx='open -a gitx'
 
-export PATH=$PATH:/Users/clint/Developer/include:/Users/clint/Projects/scripts:/Users/clint/Developer/pear/bin:/Users/clint/Library/Application\ Support/Pow/Current/bin:/Users/clint/Developer/Cellar/python
+export PATH=$PATH:/Users/clint/Developer/include:/Users/clint/Projects/scripts:/Users/clint/Developer/pear/bin:/Users/clint/Developer/Cellar/python
