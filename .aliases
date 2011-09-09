@@ -53,7 +53,7 @@ alias tailf='tail -f ~/Sites/error_log'
 alias d="cd ~/Documents"
 alias p="cd ~/Projects"
 alias g="git"
-alias v="mvim"
+alias v="vim"
 alias m="mate ."
 
 # IP addresses
