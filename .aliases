@@ -47,17 +47,24 @@ alias be='bundle exec'
 alias tailf='tail -f ~/Sites/error_log'
 
 
-# taken from https://github.com/mathiasbynens/dotfiles
+# Taken from https://github.com/mathiasbynens/dotfiles
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Documents"
 alias p="cd ~/Projects"
 alias g="git"
-alias v="vim"
+alias v="mvim"
 alias m="mate ."
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+
+# Flush Directory Service cache
+alias flush="dscacheutil -flushcache"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 

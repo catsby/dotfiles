@@ -1,14 +1,15 @@
+[apply]
+        whitespace   = fix
+
 [core]
 	excludesfile = /Users/clint/.gitignore
 	editor       = vim
-	whitespace   = trailing-space,space-before-tab
+        whitespace   = fix,space-before-tab,tab-in-indent,trailing-space
 	autocrlf = input
 
-[apply]
-	whitespace   = fix
 
 [color]
-  ui               = true ;doesnt work for some reason ...
+  ui               = auto ;doesnt work for some reason ...
   interactive      = true
   status           = true
   branch           = true
