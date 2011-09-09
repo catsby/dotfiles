@@ -1,0 +1,31 @@
+# Borrowed from https://github.com/mathiasbynens/dotfiles
+
+# Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Expand save panel by default
+defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
+
+# Enable highlight hover effect for the grid view of a stack (Dock)
+defaults write com.apple.dock mouse-over-hilte-stack -bool true
+
+# Enable spring loading for all Dock items
+defaults write enable-spring-load-actions-on-all-items -bool true
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeDebugMenu -bool true
+
+# Reset Launchpad
+rm ~/Library/Application\ Support/Dock/*.db
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Kill affected applications
+for app in Safari Finder Dock Mail; do killall "$app"; done
+
+# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
+echo "0x08000100:0" > ~/.CFUserTextEncoding
