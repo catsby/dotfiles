@@ -5,8 +5,8 @@ set ts=2
 set sw=2
 set ruler
 " colorscheme vibrantink
-set background=light
-colorscheme Tomorrow-Night-Eighties
+set background=dark
+colorscheme solarized
 "set columns=145
 "set lines=48
 set guioptions-=T
