@@ -74,6 +74,10 @@
   ; Probably should use this often
   ro  = !git fetch origin && git reset --hard origin/master
 
+[merge]
+  log = true
+
+
 [user]
   email = clint@ctshryock.com
 	name = Clint Shryock
