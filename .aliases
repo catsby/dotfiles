@@ -32,7 +32,7 @@ alias pupunit=phpunit
 alias cucumber='clear; cucumber'
 alias rspec='clear; rspec'
 alias phing='clear; phing'
-alias rake='clear; rake'
+#alias rake='clear; rake'
 
 # gets cwd
 alias getpath='pwd | tr -d "\r\n" | pbcopy'
@@ -58,7 +58,7 @@ alias m="mate ."
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
+alias ip-l="ipconfig getifaddr en1"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # Flush Directory Service cache
