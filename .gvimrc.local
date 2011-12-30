@@ -7,9 +7,21 @@ set ruler
 " let g:solarized_termcolors=16
 " colorscheme wombat256
 
-set background=light
-colorscheme Tomorrow-Night-Eighties
-"
+"set background=light
+"colorscheme Tomorrow-Night-Eighties
+
+syntax enable
+"set background=dark
+"colorscheme solarized
+
+"if has('gui_running')
+"    set background=dark
+"else
+"    set background=light
+"endif
+
+colorscheme xoria256
+
 "set columns=145
 "set lines=48
 set guioptions-=T
@@ -43,4 +55,3 @@ set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
-

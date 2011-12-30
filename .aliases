@@ -7,13 +7,13 @@ alias dirs="ls -al | grep '^d'"     # show the dir's in the current dir
 #  opting to start them manually when needed.
 
 alias apachectl='sudo apachectl'
-alias mysqlstart='lunchy start mysql'
-alias mysqlstop='lunchy stop mysql && mysqld stop'
+alias mysqlstart='mysql.server start'
+alias mysqlstop='mysql.server stop'
 alias pgstart='lunchy start postgres'
 alias pgstop='lunchy stop postres'
 
-alias devstart='apachectl start && lunchy start postgres && lunchy start memcached && lunchy start mysql'
-alias devstop='apachectl stop; lunchy stop postgres && lunchy stop mysql'
+alias devstart='apachectl start && lunchy start postgres && lunchy start memcached && mysqlstart'
+alias devstop='apachectl stop; lunchy stop postgres && mysqlstop'
 
 # make a diff file, view in Textmate (requires Textmate cli)
 alias mdiff='git diff > d.diff && mate d.diff'
@@ -58,7 +58,12 @@ alias flush="dscacheutil -flushcache"
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
-# rbenv rehash
+# rbenv 
+alias rb='rbenv'
 alias rr='rbenv rehash'
 
 alias lsa='ls -la'
+alias lsl='ls -l'
+
+# From https://github.com/holman/dotfiles/blob/master/system/keys.zsh
+alias pubkey="more ~/.ssh/id_dsa.public | pbcopy | echo '=> Public key copied to pasteboard.'"
