@@ -41,7 +41,8 @@ alias tailf='tail -f ~/Sites/error_log'
 
 # Shortcuts
 alias d="cd ~/Documents"
-alias p="cd ~/Projects"
+alias pc="cd ~/Projects/ctshryock"
+alias p="cd ~/Projects/github"
 alias g="git"
 alias v="vim"
 alias m="mate ."
