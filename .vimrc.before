@@ -1,0 +1,2 @@
+call janus#disable_plugin('Fugitive')
+call janus#disable_plugin('buffergator')
