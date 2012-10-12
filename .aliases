@@ -9,8 +9,8 @@ alias dirs="ls -al | grep '^d'"     # show the dir's in the current dir
 alias apachectl='sudo apachectl'
 alias mysqlstart='mysql.server start'
 alias mysqlstop='mysql.server stop'
-alias pgstart='lunchy start postgres'
-alias pgstop='lunchy stop postres'
+alias pgstart='pg_ctl start -D /Users/clint/Developer/var/postgres -l /Users/clint/Developer/var/postgres/server.log'
+alias pgstop='pg_ctl stop -D /Users/clint/Developer/var/postgres -l /Users/clint/Developer/var/postgres/server.log'
 
 alias devstart='apachectl start && lunchy start postgres && lunchy start memcached && mysqlstart'
 alias devstop='apachectl stop; lunchy stop postgres && mysqlstop'
