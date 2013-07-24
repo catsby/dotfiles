@@ -267,4 +267,4 @@ call s:DefineCommand("e", "Edit")
 call s:DefineCommand("mkdir", "Mkdir")
 
 "set font
-set guifont=Inconsolata:h15
+set guifont=Consolas:h15
