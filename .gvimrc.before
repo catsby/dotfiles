@@ -4,8 +4,6 @@ set et
 set ts=2
 set sw=2
 set ruler
-" let g:solarized_termcolors=16
- "colorscheme wombat256
 
 let g:tagbar_ctags_bin = '/Users/clint/Developer/bin/ctags'
 
@@ -135,6 +133,10 @@ function s:CloseIfOnlyNerdTreeLeft()
     endif
   endif
 endfunction
+
+
+
+
 
 " If the parameter is a directory, cd into it
 function s:CdIfDirectory(directory)

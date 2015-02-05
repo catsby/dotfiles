@@ -1,11 +1,14 @@
+[credential]
+  helper = osxkeychain
+
 [apply]
-        whitespace   = fix
+  whitespace   = fix
 
 [core]
 	excludesfile = /Users/clint/.gitignore
-	editor       = vim
-        whitespace   = fix,space-before-tab,tab-in-indent,trailing-space
+    whitespace   = fix,space-before-tab,tab-in-indent,trailing-space
 	autocrlf = input
+	editor = mvim -f
 
 
 [color]
@@ -83,7 +86,7 @@
 	name = Clint Shryock
 
 [github]
-  user = ctshryock
+  user = catsby
 
 [push]
 	default                 = tracking
