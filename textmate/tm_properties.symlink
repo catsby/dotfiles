@@ -1,0 +1,16 @@
+# Settings
+
+encoding         = UTF-8
+fontName         = "FiraCode Nerd Font"
+fontSize         = 16
+# lineEndings      = '\n'
+# showInvisibles   = true
+softWrap         = true
+tabSize          = 2
+
+[ source.ruby ]
+softTabs = true
+tabSize = 2
+
+[ *.hcl ]
+fileType         = 'source.terraform'

@@ -1,268 +1,306 @@
+let mapleader=","
+
 set nocompatible
-filetype off
+set encoding=utf-8
+set termguicolors
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+syntax enable
+set synmaxcol=800           " don't try to highlight long lines
+set ruler       " show the cursor position all the time
+set cursorline  " highlight the line of the cursor
+set showcmd     " show partial commands below the status line
+set shell=sh
+set textwidth=80
 
-
-" start Plugins
-
-Plugin 'gmarik/Vundle.vim' " required
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/syntastic'
-Plugin 'rking/ag.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'pangloss/vim-javascript'
-Plugin 'jsbeautify'
-Plugin 'LargeFile'
-Plugin 'mattn/gist-vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'mustache/vim-mustache-handlebars'
-
-" end Plugins
-call vundle#end()
-filetype plugin indent on
-
-" 16 color terminal
-set t_Co=256
-
-" Set the term title
-set title
-set titlestring=%F
-
-" Show line number and position
-set number
-set relativenumber
-set ruler
-
-" Leave 3 line buffer
-set scrolloff=3
-
-" Enable syntax stuff
-syntax on
-au BufRead,BufNewFile *.es6 set filetype=javascript
-au BufRead,BufNewFile *.handlebars set filetype=mustache
-filetype plugin indent on
-
-" Show current mode
-set showmode
-set laststatus=2
-
-" Fix backspace
-set backspace=2
-
-" Make Ctrl-T go to the next vim-tab
-nmap <C-T> <ESC>:tabn<CR>
-
-" Fix expansion mode
-set wildmode=list:longest
-
-" Incremental search
-set incsearch
-set ignorecase
-
-" Show matching braces, etc.
-set showmatch
-
-" Make it smart
-set smartindent
-set smarttab
-set smartcase
+"" Whitespace
+set nowrap                        " don't wrap lines
+set tabstop=2                     " a tab is two spaces
+set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set autoindent
-
-" Default to soft tab
-set expandtab
-
-" Default to 2 spaces per tab
-set tabstop=2
+set smartindent                   " be smart about it
+set expandtab                     " use spaces, not tabs
 set softtabstop=2
-set shiftwidth=2
+set nolist                          " don't Show invisible characters
 
-" More history
-set history=100
-
-" Store our undo file
-set undodir=~/.vim/undo
-set undofile
-
-" Make Taglist update more often
-set updatetime=750
-
-" Enable file backup (atomic)
-set noswapfile
-"set directory=~/.vim/swap,/tmp,.
-set backupdir=~/.vim/backup,/tmp,.
-set backup
-set writebackup
-
-" Scroll the view faster
-noremap <C-e> 3<C-e>
-noremap <C-y> 3<C-y>
-
-" Wildcard ignore some files
-set wildignore+=*.o,*.pyc,*.beam,*.class,*~
-
-" Make our shell interactive
-""" removed - causing vim to background immediately in zsh
-" set shellcmdflag=-ic
-
-" Allow switching away from changed buffers
+" Allow backgrounding buffers without writing them, and remember marks/undo
+" for backgrounded buffers
 set hidden
 
-" Prompts to save on quit
-set confirm
+" Auto-reload buffers when file changed on disk
+set autoread
 
-" From http://vimcasts.org/episodes/tidying-whitespace/
-" Preserves/Saves the state, executes a command, and returns to the saved state
-" Modified from http://vimbits.com/bits/231
-" Remove trailing whitespace on save
-function! Preserve(command)
-    " Save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    execute a:command
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
+" Disable swap files; systems don't crash that often these days
+set updatecount=0
 
-" Execute clear whitespace on save
-autocmd BufWritePre * :call Preserve("%s/\\s\\+$//e")
+set backspace=indent,eol,start    " backspace through everything in insert mode
 
-" Disable folding
-set nofoldenable
+set nojoinspaces
+set showbreak=↪\ 
 
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+"" Searching
+set hlsearch                      " highlight matches
+set incsearch                     " incremental searching
+set ignorecase                    " searches are case insensitive...
+set smartcase                     " ... unless they contain at least one capital letter
 
-" Sudo to write
-cmap w!! w !sudo tee % >/dev/null
+"----------------------------------------------------------------------
+" Telescope
+"----------------------------------------------------------------------
+nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>R <cmd>lua require('telescope.builtin').lsp_references()<cr>
 
-" Causes split to make it below
+map <leader>i <Cmd>lua vim.lsp.buf.hover()<CR>
+map <leader>T <cmd>lua vim.lsp.buf.type_definition()<CR>
+map <leader>S <cmd>lua vim.lsp.buf.document_symbol()<CR>
+map <leader>C <cmd>lua vim.lsp.buf.incoming_calls()<CR>
+map <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
+map <leader>l <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
+autocmd BufNewFile,BufRead *.wpvars setf hcl
+
+"----------------------------------------------------------------------
+" End Telescope
+"----------------------------------------------------------------------
+
+augroup vimrcEx
+  autocmd!
+  " Avoid showing trailing whitespace when in insert mode
+  au InsertEnter * :set listchars-=trail:•
+  au InsertLeave * :set listchars+=trail:•
+  
+  " Some file types use real tabs
+  au FileType {make,gitconfig} setl noexpandtab
+  
+  " Make sure all markdown files have the correct filetype set and setup wrapping
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+
+  " Treat JSON files like JavaScript
+  au BufNewFile,BufRead *.json setf javascript
+  
+  " Remember last location in file, but not for commit messages.
+  " see :help last-position-jump
+  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g`\"" | endif
+    
+  " format md files to 80 chars
+  au BufRead,BufNewFile *.md setlocal textwidth=80
+  
+  au filetype plugin indent on
+augroup END
+
+" don't use Ex mode, use Q for formatting
+map Q gq
+
+" clear the search buffer when hitting return
+:nnoremap <CR> :nohlsearch<cr>
+
+" Show leader keystrokes in the bottom right
+set showcmd
+
+" yank to system clipboard
+map <leader>y "*y
+
+" paste lines from unnamed register and fix indentation
+nmap <leader>p pV`]=
+nmap <leader>P PV`]=
+
+map <leader>. :e .<cr>
+
+" ignore Bundler standalone/vendor installs & gems
+set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**,vendor/gems/**
+set wildignore+=*/node_modules/*
+set wildignore+=.DS_Store
+
+" toggle between last open buffers
+nnoremap <leader><leader> <c-^>
+
+set splitright
 set splitbelow
 
-" Causes vsplit to split to the right
-set splitright
+set showmatch              " brackets/braces that is
+set mat=3                  " duration to show matching brace (1/10 sec)
+set laststatus=2           " always show the status line
 
-" Nicer invisibles
-set listchars=tab:›\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+" word auto complete (?)
+set complete+=kspell
+set spelllang=en
+set spellfile=$HOME/Dropbox/nvim/spell/en.utf-8.add
+nmap <silent> <leader>s :set spell!<CR>
 
-" Setup a leader
-let mapleader = ";"
+" spell check when writing commit logs and markdown files
+autocmd filetype svn,*commit* setlocal spell
+autocmd BufRead,BufNewFile *.md setlocal spell
 
-" Fast saving
-nmap <leader>w :w<cr>
-
-" Splitting
-nmap <leader>v :vsplit<cr>
-nmap <leader>s :split<cr>
-
-" Fullscreen
-nmap <leader>f :set fu<cr>
-
-" Disable Ex Mode
-map Q <Nop>
-
-" Remap jj to escape
-inoremap jj <Esc>
-
-" Allows %% to expand to the folder of the current file
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
-" General cursor moves in insert mode
-inoremap <c-k> <esc>O
-inoremap <c-l> <esc>A
-inoremap <c-h> <esc>I
-inoremap <c-j> <esc>o
-
-" Use <leader> ss to re-run the syntax highlights
-nnoremap <leader>ss :syntax sync fromstart<cr>:redraw!<cr>
-
-" Configure syntastic
-let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['erlang', 'html'] }
-let g:syntastic_javascript_jsl_conf = "-conf ~/.jslintrc"
-let g:syntastic_always_populate_loc_list=1
-
-" Set powerline to use fancy symbols, and custom theme
-" let g:Powerline_symbols = "fancy"
-" let g:Powerline_theme = "custom"
-" let g:Powerline_colorscheme = "custom"
-" call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'bubblegum'
-
-" Setup ctrlp
-let g:ctrlp_max_files = 10000
-nmap <leader>b :CtrlPBuffer<cr>
-nmap <leader>l :CtrlPLine<cr>
-nmap <leader>d :bdelete<cr>
-
-" Setup YCM
-let g:ycm_key_detailed_diagnostics = '<leader>i'
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_allow_changing_updatetime = 0
-let g:ycm_max_diagnostics_to_display = 30
+" map jk to escape key
+:imap jk <Esc>
 
 
-" Optimize file searching
-let g:ctrlp_custom_ignore = '\\.vagrant\|\\.git\|\\.hg\|\\.svn\|env\|.beam\|ebin\|deps\|\\.eunit\|\\.pyc$\|\\.o$'
-if has("unix")
-    let g:ctrlp_user_command = {
-                \   'fallback': 'find %s -type f | egrep -v ' . g:ctrlp_custom_ignore .' | head -' . g:ctrlp_max_files
-                \ }
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
+let g:tagbar_width = max([40, winwidth(0) / 4])
+
+" automatically highlight variable your cursor is on
+let g:go_auto_sameids = 0
+
+set textwidth=80
+set colorcolumn=+1
+hi ColorColumn guibg=#2d2d2d ctermbg=236
+highlight clear SignColumn 
+
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+
+" copied from Evan:
+let g:go_term_enabled = 1
+let g:go_term_mode = "split"
+let g:go_term_height = 10
+
+let g:go_list_autoclose = 1
+let g:go_doc_keywordprg_enabled = 0
+let g:go_code_completion_enabled = 0
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
 endif
-let g:ctrlp_working_path_mode = 0 " Do not modify my path, bitch
-let g:ctrlp_map = '<leader>t' " Just use leader-t
-let g:ctrlp_cache_dir = $HOME.'/.vim/ctrlp'  " Put the cache in the vim folder
-let g:ctrlp_jump_to_buffer = 1 " Do not jump to new tabs
-map <leader>b :CtrlPBuffer<cr>
 
-" Disable fancy shit for 'large' files
-" that are > 50MB
-let g:LargeFile = 50
+" Added for vault website (?)
+set backupcopy=yes
 
-" If we are in visual mode, we can use * to search for the selection
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+" colorscheme dracula
+colorscheme nightfly
+set background=dark
 
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+" Show full path of filename
+function! FilenameForLightline()
+    " returns something like database/backend.go
+    " return expand("%:h:t") . '/' .expand('%:t')
+    return expand("%-.50F")
+endfunction
 
-" Gist settings
-let g:gist_clip_command = 'pbcopy'
-let g:gist_open_browser_after_post = 1
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'FilenameForLightline'
+      \ },
+      \ }
+      
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
 
-" NERDTree setting
-nmap <leader>n :NERDTreeToggle<cr>
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
 
-colorscheme hybrid
+" always show signcolumns
+set signcolumn=yes
 
-" Set the Gvim options
-if has("gui_running")
-    set guifont=Powerline\ Consolas:h11
-    set columns=140
-    set lines=40
-    set sessionoptions=blank,buffers,curdir,folds,localoptions,options,resize,tabpages,winpos,winsize
-    map <C-Z> :mksession! ~/.vim/.session <CR>
-    map <C-X> :source ~/.vim/.session <CR>
-    colorscheme hybrid
-    set fuopt+=maxhorz
-    set guioptions=egmt
-endif
+
+let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_virtualTextPrefix = ''
+let g:LanguageClient_loggingFile =  expand('/Users/clint/LanguageClient.log')
+let g:LanguageClient_serverStderr = expand('/Users/clint/LanguageServer.log')
+
+" -------------------------------------------------------------------------------------------------
+" begin things lifted from Evan's vimrc
+" -------------------------------------------------------------------------------------------------
+
+set wildmenu     " fancy command completion menu!
+set wildmode=list:longest
+
+
+set nolazyredraw           " turn off lazy redraw
+set number                 " line numbers
+set showbreak=+ " display a + at the beginning of a wrapped line
+
+set listchars=tab:»·,trail:· " show tabs and trailing spaces
+set listchars=tab:»·,trail:· " show tabs and trailing spaces
+set listchars+=extends:»     " show a » when a line goes off the right
+                             " edge of the screen
+set listchars+=precedes:«    " show a « when a line goes off the left
+                             " edge of the screen
+
+set hlsearch   " highlight searches
+
+packloadall
+silent! helptags ALL
+
+" -------------------------------------------------------------------------------------------------
+" end things lifted from Evan's vimrc
+" -------------------------------------------------------------------------------------------------
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+""""
+" tags
+""""
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+
+map <leader>gt :TagbarToggle<CR>
+imap <leader>gt <esc>:TagbarToggle<CR>i
+""""
+" end tags
+""""
+
+let g:indent_blankline_char_list = ['|', '¦', '┆', '┊']
+let g:indent_blankline_use_treesitter = v:true
+let g:indent_blankline_show_trailing_blankline_indent = v:false
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+lua require("vim-misc")
+autocmd BufWritePre *.go lua goimports(1000)
+" -- 
+" -- set completeopt=menuone,noselect
+
+"    " disable cursor keys in normal mode
+"    map <Left>  :echo "no!"<cr>
+"    map <Right> :echo "no!"<cr>
+"    map <Up>    :echo "no!"<cr>
+"    map <Down>  :echo "no!"<cr>

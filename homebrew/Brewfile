@@ -2,44 +2,54 @@
 
 cask_args appdir: "/Applications"
 
-brew "mas"
+# brew "mas"
+# 
+# mas "Airmail", id: 918858936
+# mas "DaisyDisk", id: 411643860
+# mas "Deliveries", id: 924726344
+# mas "Lungo", id: 1263070803
+# mas "Microsoft Remote Desktop", id: 1295203466
+# mas "Moom", id: 419330170
+# mas "NotePlan 3", id: 1505432629
+# mas "Soulver 3", id: 1508732804
+# mas "Speedtest", id: 1153157709
+# mas "The Unarchiver", id: 425424353
+# mas "WhatsApp", id: 1147396723
+# mas "WireGuard", id: 1451685025
+# mas "Yoink", id: 457622435
 
-mas "Airmail", id: 918858936
-mas "DaisyDisk", id: 411643860
-mas "Deliveries", id: 924726344
-mas "Lungo", id: 1263070803
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Moom", id: 419330170
-mas "NotePlan 3", id: 1505432629
-mas "Soulver 3", id: 1508732804
-mas "Speedtest", id: 1153157709
-mas "The Unarchiver", id: 425424353
-mas "WhatsApp", id: 1147396723
-mas "WireGuard", id: 1451685025
-mas "Yoink", id: 457622435
+# cask "1Password"
+# cask "alfred"
+# cask "bartender"
+# cask "carbon-copy-cloner"
+# cask "docker"
+# cask "fantastical"
+# # cask "google-chrome"
+# cask "iterm2"
+# cask "keyboard-maestro"
+# cask "rocket"
+# # cask "slack"
+# cask "spotify"
+# cask "visual-studio-code"
+# cask "vlc"
 
-cask "1Password"
-cask "alfred"
-cask "bartender"
-cask "carbon-copy-cloner"
-cask "docker"
-cask "fantastical"
-# cask "google-chrome"
-cask "iterm2"
-cask "keyboard-maestro"
-cask "rocket"
-# cask "slack"
-cask "spotify"
-cask "visual-studio-code"
-cask "vlc"
+# taps
+tap "golangci/tap"
+tap "hashicorp/internal", "git@github.com:hashicorp/homebrew-internal.git"
+tap "hashicorp/security", "git@github.com:hashicorp/homebrew-security.git"
+tap "hashicorp/tap"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
 
 brew "aria2"
 brew "git"
-brew "htop"
-brew "iperf3"
+# brew "htop"
+# brew "iperf3"
 brew "jq"
 brew "php" # necessary for some alfred workflows
-brew "python@3.11"
+# brew "python@3.11"
 brew "the_silver_searcher"
 brew "tig"
 brew "tldr"

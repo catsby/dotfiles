@@ -7,23 +7,27 @@ then
   source ~/.localrc
 fi
 
+### shortcut to this dotfiles path is $ZSH
+##if [ "$(uname -s)" = "Darwin" ]
+##then
+##  export ZSH=$HOME/Sync/Shared\ Libraries/dotfiles
+##else
+##  export ZSH=$HOME/.dotfiles
+##fi
+##export DOTFILES=$ZSH
+
 # shortcut to this dotfiles path is $ZSH
-if [ "$(uname -s)" = "Darwin" ]
-then
-  export ZSH=$HOME/Sync/Shared\ Libraries/dotfiles
-else
-  export ZSH=$HOME/.dotfiles
-fi
-export DOTFILES=$ZSH
+export ZSH=$HOME/Dropbox/Shared/dotfiles
 
+export DOTFILES=$HOME/Dropbox/Shared/dotfiles
 
-export DEFAULT_USER=markupboy
+export DEFAULT_USER=clint
 
 # source every .zsh file in this rep
 for config_file ($ZSH/**/*.zsh) source $config_file
 
 # editor
-export EDITOR="/usr/local/bin/code --wait"
+export EDITOR='nvim'
 
 ##############
 # completion #
@@ -36,8 +40,36 @@ autoload -Uz compinit && compinit -i
 
 # zprof
 
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+######################
+# other custom stuff #
+######################
+
+qq() {
+    clear
+
+    logpath="$TMPDIR/q"
+    if [[ -z "$TMPDIR" ]]; then
+        logpath="/tmp/q"
+    fi
+
+    if [[ ! -f "$logpath" ]]; then
+        echo 'Q LOG' > "$logpath"
+    fi
+
+    tail -100f -- "$logpath"
+}
+
+qqrm() {
+    logpath="$TMPDIR/q"
+    if [[ -z "$TMPDIR" ]]; then
+        logpath="/tmp/q"
+    fi
+    if [[ -f "$logpath" ]]; then
+        rm "$logpath"
+    fi
+    qq
+}

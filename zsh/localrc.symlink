@@ -1,0 +1,12 @@
+export TRELLO_KEY=ecde242ffb1655fa311c3ab7e17e4ef1
+export TRELLO_TOKEN=5feb11a963364bfca58039fd95ef239f7d1674553acf85b2b3905e352a740ad8
+
+# eval "$(rbenv init -)"
+
+# shortcuts 
+alias tfplan="terraform plan"
+alias tfapply="terraform apply -auto-approve"
+
+alias party=terminal-parrot
+
+source '/Users/clint/go/github.com/hashicorp/terraform-aws-cloud-bastion/tools/infra_tools.sh'

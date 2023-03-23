@@ -35,3 +35,8 @@ alias getkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 
 # chrome cli
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
+# catsbys
+alias mate='nocorrect mate'
+alias m='nocorrect mate'
+alias touch='nocorrect touch'
