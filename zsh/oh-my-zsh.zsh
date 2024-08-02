@@ -4,6 +4,8 @@ ZSH=$HOME/.oh-my-zsh
 # spaceship theme and settings (https://github.com/denysdovhan/spaceship-prompt/blob/master/docs/Options.md)
 export SPACESHIP_CONFIG="$HOME/.spaceshiprc.zsh"
 ZSH_THEME="spaceship"
+# ZSH_THEME="miloshadzic"
+# ZSH_THEME="robbyrussell"
 
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
@@ -29,4 +31,4 @@ plugins=(
 ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=black,bold'
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=black,bold'

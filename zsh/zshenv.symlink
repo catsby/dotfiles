@@ -1,0 +1,15 @@
+export PATH="$PATH:/Users/clint/go/github.com/hashicorp/cloud-makefiles/bin"
+# export PATH="/Users/clint/ziginstall/zig0.11.0-dev:$PATH"
+
+export PATH="/Users/clint/go/github.com/hashicorp/cloud-sre/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# export PATH="/Users/clint/go/github.com/ziglang/zig/build/stage3/bin:$PATH"
+
+export PATH="/Users/clint/go/github.com/replicate/cog/test-integration:$PATH"
+
+# ghostty 
+export PATH="/Users/clint/ziginstall/zig-macos-aarch64-0.12.0-dev.1828+225fe6ddb:$PATH"
+export PATH="/Applications/Ghostty.app/Contents/MacOS:$PATH"
+
+. "$HOME/.cargo/env"

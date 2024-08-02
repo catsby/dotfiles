@@ -59,8 +59,6 @@ map <leader>C <cmd>lua vim.lsp.buf.incoming_calls()<CR>
 map <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 map <leader>l <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
-autocmd BufNewFile,BufRead *.wpvars setf hcl
 
 "----------------------------------------------------------------------
 " End Telescope
@@ -76,7 +74,7 @@ augroup vimrcEx
   au FileType {make,gitconfig} setl noexpandtab
   
   " Make sure all markdown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+  " au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
 
   " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json setf javascript
@@ -179,7 +177,8 @@ set backupcopy=yes
 
 " colorscheme dracula
 colorscheme nightfly
-set background=dark
+" set background=dark
+" set background=""
 
 " Show full path of filename
 function! FilenameForLightline()
@@ -188,16 +187,21 @@ function! FilenameForLightline()
     return expand("%-.50F")
 endfunction
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'FilenameForLightline'
-      \ },
-      \ }
+""""""
+" See colors for onehalf below
+""""""
+" let g:lightline = {
+"       \ 'colorscheme': 'wombat',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'filename': 'FilenameForLightline'
+"       \ },
+"       \ }
+""""""
+""""""
       
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -246,7 +250,7 @@ silent! helptags ALL
 set hidden
 
 let g:terraform_align=1
-let g:terraform_fmt_on_save=1
+" let g:terraform_fmt_on_save=1
 
 """"
 " tags
@@ -289,12 +293,12 @@ let g:indent_blankline_char_list = ['|', '¦', '┆', '┊']
 let g:indent_blankline_use_treesitter = v:true
 let g:indent_blankline_show_trailing_blankline_indent = v:false
 
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+" old compe things
+" inoremap <silent><expr> <C-Space> compe#complete()
+" inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
-lua require("vim-misc")
 autocmd BufWritePre *.go lua goimports(1000)
 " -- 
 " -- set completeopt=menuone,noselect
@@ -304,3 +308,49 @@ autocmd BufWritePre *.go lua goimports(1000)
 "    map <Right> :echo "no!"<cr>
 "    map <Up>    :echo "no!"<cr>
 "    map <Down>  :echo "no!"<cr>
+
+" autocmd BufWritePre,BufNewFile,BufRead *.hcl set syntax=tf
+" autocmd BufNewFile,BufRead *.wpvars setf hcl
+
+lua <<EOF
+  require'lspconfig'.terraformls.setup{}
+EOF
+autocmd BufWritePre *.tfvars lua vim.lsp.buf.format()
+autocmd BufWritePre *.tf lua vim.lsp.buf.format()
+autocmd BufWritePre *.hcl lua vim.lsp.buf.format()
+
+let g:tagbar_ctags_bin = '/opt/homebrew/bin/ctags'
+
+" Rust things, maybe
+let g:rustfmt_autosave = 1
+let g:rust_clip_command = 'pbcopy'
+" End Rust things
+
+""""""""
+" Colors according to https://github.com/sonph/onehalf/blob/master/vim/README.md
+""""""""
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+syntax on
+set t_Co=256
+set cursorline
+" colorscheme onehalfdark
+let g:lightline = {
+      \ 'colorscheme': 'onehalfdark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'FilenameForLightline'
+      \ },
+      \ }
+
+""""""""
+" End Colors according to https://github.com/sonph/onehalf/blob/master/vim/README.md
+""""""""

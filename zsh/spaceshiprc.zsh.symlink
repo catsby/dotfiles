@@ -4,9 +4,9 @@ SPACESHIP_PROMPT_ORDER=(
   dir           # Current directory section
   host          # Hostname section
   git
-  node
-  golang
-  docker
+  # node
+  # golang
+  # docker
   exec_time     # Execution time
   line_sep      # Line break
   jobs          # Background jobs indicator
@@ -22,3 +22,5 @@ SPACESHIP_GIT_STATUS_MODIFIED="%F{red}!%F{red}"
 SPACESHIP_CHAR_PREFIX=" "
 SPACESHIP_DIR_PREFIX=" "
 SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true
+SPACESHIP_PACKAGE_PREFIX=""
+SPACESHIP_PACKAGE_SUFFIX=""

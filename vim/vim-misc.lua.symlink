@@ -127,6 +127,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 --require'lspconfig'.gopls.setup{}
+-- definition split
 function dvSplit()
   vim.cmd('vsplit')
   local def = vim.lsp.buf.definition()

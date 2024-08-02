@@ -26,6 +26,7 @@ bind C-a send-prefix
 # make splitting panes easier, more logical
 bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
+bind \\ split-window -hf -c "#{pane_current_path}"
 
 # moving between panes with Prefix h,j,k,l
 bind h select-pane -L 
@@ -110,9 +111,16 @@ bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-names
 # bind -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
 
 # Add truecolor support
-set-option -ga terminal-overrides ",xterm-256color:Tc"
+#set -g default-terminal "screen-256color"
+#set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+# things according to https://github.com/sonph/onehalf/blob/master/vim/README.md
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",*256col*:Tc"
+
 # Default terminal is 256 colors
-set -g default-terminal "screen-256color"
+# for tmux 3.2, you can use the following setting instead:
+set -as terminal-features ",xterm-256color:RGB"
 
 # Source snapped tmux config
 # source-file /Users/clint/Dropbox/Shared/dotfiles/tmux/tmux.snap
@@ -120,9 +128,27 @@ set -g default-terminal "screen-256color"
 set -g status-interval 3600
 set -g status-justify centre
 
+set-option -g renumber-windows on
+
 # auto-rename
 set-option -g allow-rename on
 
 set-option -g default-command "reattach-to-user-namespace -l zsh"
 
-run-shell "/Users/clint/go-src/github.com/arcticicestudio/nord-tmux/nord.tmux"
+# run-shell "/Users/clint/go/github.com/arcticicestudio/tmux/nord.tmux"
+
+# set -g @nord_tmux_show_status_content "0"
+
+
+
+# tpm stuff
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'dracula/tmux'
+set -g @dracula-show-powerline true
+set -g @dracula-show-left-sep 
+
+run '~/.tmux/plugins/tpm/tpm'
+run -b '~/.tmux/plugins/tpm/tpm'

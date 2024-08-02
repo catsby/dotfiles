@@ -48,3 +48,6 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 alias p="pomodoro"
 
 alias ffs="git tag -d list"
+
+alias go="nocorrect go"
+alias ct="nocorrect cargo test"
