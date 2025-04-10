@@ -4,7 +4,6 @@ alias dotcd='cd $DOTFILES'
 
 alias reload!='. ~/.zshrc && clear'
 
-
 #zsh/dotfile specific
 alias dirs="ls -la | grep '^d'"
 alias mdiff="git diff > d.diff && mate d.diff"
@@ -19,7 +18,8 @@ alias rm="nocorrect rm"
 #alias h="heroku"
 alias h="helm"
 alias tm="tmuxinator"
-alias tf="terraform"
+#alias tf="terraform"
+alias tf="tofu"
 #alias yt="youtube-dl"
 alias yt="youtube-dl --hls-prefer-ffmpeg -c --no-call-home "
 #alias yt="youtube-dl --hls-prefer-ffmpeg -c --no-call-home --recode-video mp4 "
@@ -29,7 +29,6 @@ alias tka="tmux kill-server"
 alias tmk="tmux kill-server -t"
 alias vim=nvim
 alias vi=nvim
-alias rebuild="/Users/clint/scripts/rebuild"
 
 alias dree="tree -d"
 # shortcut to rename a tmux window
@@ -40,14 +39,25 @@ alias v="vault"
 alias k="kubectl"
 alias 🙀="pkill"
 
-alias wp="waypoint"
-
-alias myc="/usr/local/opt/mysql-client/bin/mysql"
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
-
-alias p="pomodoro"
-
 alias ffs="git tag -d list"
 
 alias go="nocorrect go"
 alias ct="nocorrect cargo test"
+alias duds="/opt/homebrew/bin/uds"
+alias uds="/Users/clint/go/github.com/defenseunicorns/uds-cli/build/uds-mac-apple"
+alias uds2="/Users/clint/go/github.com/defenseunicorns/uds-cli-v2/build/uds"
+#alias zarf="/Users/clint/go/github.com/zarf-dev/zarf/build/zarf-mac-apple"
+
+alias e="eza"
+
+# List directory contents
+# alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# Include directory entries whose names begin with a dot (‘.’).
+# long format
+alias lsa='eza -lah'
+
+alias ws='windsurf'

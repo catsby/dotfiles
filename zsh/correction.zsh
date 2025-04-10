@@ -1,8 +1,10 @@
 ##############
 # correction #
 ##############
-setopt correct
-setopt correctall
+# setopt correct
+# setopt correctall
+unsetopt correct
+unsetopt correctall
 
 setopt extended_glob
 
